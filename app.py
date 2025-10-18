@@ -108,17 +108,65 @@ def plot_chart(df, show_signals):
     st.plotly_chart(fig, use_container_width=True)
 
 
-def load_stock_data(ticker, period='3mo'):
+def generate_sample_data(days=90):
     """
-    Load stock data from Yahoo Finance.
+    Generate sample stock data for demonstration purposes.
     
     Args:
-        ticker: Stock ticker symbol
-        period: Time period (e.g., '1mo', '3mo', '6mo', '1y')
+        days: Number of days of data to generate
     
     Returns:
         DataFrame with OHLC data
     """
+    np.random.seed(42)
+    dates = pd.date_range(end=pd.Timestamp.now(), periods=days, freq='D')
+    
+    # Generate realistic stock price movement
+    base_price = 150
+    returns = np.random.randn(days) * 2
+    close_prices = base_price + np.cumsum(returns)
+    
+    # Generate OHLC data
+    open_prices = close_prices + np.random.randn(days) * 0.5
+    high_prices = np.maximum(open_prices, close_prices) + abs(np.random.randn(days) * 1.5)
+    low_prices = np.minimum(open_prices, close_prices) - abs(np.random.randn(days) * 1.5)
+    volume = np.random.randint(1000000, 10000000, days)
+    
+    df = pd.DataFrame({
+        'Open': open_prices,
+        'High': high_prices,
+        'Low': low_prices,
+        'Close': close_prices,
+        'Volume': volume
+    }, index=dates)
+    
+    return df
+
+
+def load_stock_data(ticker, period='3mo', use_demo=False):
+    """
+    Load stock data from Yahoo Finance or generate sample data.
+    
+    Args:
+        ticker: Stock ticker symbol
+        period: Time period (e.g., '1mo', '3mo', '6mo', '1y')
+        use_demo: Use sample data instead of Yahoo Finance
+    
+    Returns:
+        DataFrame with OHLC data
+    """
+    if use_demo:
+        # Generate sample data based on period
+        period_days = {
+            '1mo': 30,
+            '3mo': 90,
+            '6mo': 180,
+            '1y': 365,
+            '2y': 730
+        }
+        days = period_days.get(period, 90)
+        return generate_sample_data(days)
+    
     try:
         stock = yf.Ticker(ticker)
         df = stock.history(period=period)
@@ -130,6 +178,7 @@ def load_stock_data(ticker, period='3mo'):
         return df
     except Exception as e:
         st.error(f"Error loading data: {str(e)}")
+        st.info("💡 Try enabling 'Demo Mode' to see the dashboard with sample data.")
         return None
 
 
@@ -143,7 +192,9 @@ def main():
     # Sidebar controls
     st.sidebar.header("Settings")
     
-    ticker = st.sidebar.text_input("Stock Ticker", value="AAPL")
+    use_demo = st.sidebar.checkbox("Demo Mode (Sample Data)", value=False)
+    
+    ticker = st.sidebar.text_input("Stock Ticker", value="AAPL", disabled=use_demo)
     period = st.sidebar.selectbox(
         "Time Period",
         options=['1mo', '3mo', '6mo', '1y', '2y'],
@@ -157,8 +208,9 @@ def main():
     
     # Load data button
     if st.sidebar.button("Load Data") or 'df' not in st.session_state:
-        with st.spinner(f"Loading data for {ticker}..."):
-            df = load_stock_data(ticker, period)
+        data_source = "sample data" if use_demo else ticker
+        with st.spinner(f"Loading data for {data_source}..."):
+            df = load_stock_data(ticker, period, use_demo=use_demo)
             
             if df is not None:
                 # Calculate Bollinger Bands
@@ -168,8 +220,8 @@ def main():
                 df = detect_bounce_signals(df)
                 
                 st.session_state.df = df
-                st.session_state.ticker = ticker
-                st.success(f"Data loaded successfully for {ticker}!")
+                st.session_state.ticker = "DEMO" if use_demo else ticker
+                st.success(f"Data loaded successfully for {data_source}!")
     
     # Display chart if data is available
     if 'df' in st.session_state:
