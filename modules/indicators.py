@@ -20,6 +20,7 @@ def master_bounce_indicator(df):
         pd.DataFrame: DataFrame with added bounce_signal column
     """
     if df.empty:
+        df['bounce_signal'] = pd.Series(dtype=bool)
         return df
     
     # Calculate 20-period moving average
