@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trading Dashboard</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📊 Trading Dashboard</h1>
+            <div class="header-info">
+                <span id="last-update">Last updated: --:--</span>
+                <button id="refresh-btn" class="btn-primary">Refresh Data</button>
+            </div>
+        </header>
+
+        <main>
+            <!-- Portfolio Summary -->
+            <section class="portfolio-summary">
+                <h2>Portfolio Summary</h2>
+                <div class="summary-cards">
+                    <div class="card">
+                        <div class="card-label">Total Value</div>
+                        <div class="card-value" id="total-value">$0.00</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-label">Day Change</div>
+                        <div class="card-value" id="day-change">$0.00</div>
+                        <div class="card-subvalue" id="day-change-percent">0.00%</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Market Data -->
+            <section class="market-data">
+                <h2>Market Data</h2>
+                <div class="data-section">
+                    <h3>Stocks</h3>
+                    <div id="stocks-container" class="data-grid"></div>
+                </div>
+                <div class="data-section">
+                    <h3>Cryptocurrency</h3>
+                    <div id="crypto-container" class="data-grid"></div>
+                </div>
+            </section>
+
+            <!-- Holdings -->
+            <section class="holdings">
+                <h2>Your Holdings</h2>
+                <div id="holdings-container" class="table-container"></div>
+            </section>
+
+            <!-- Recent Trades -->
+            <section class="trades">
+                <h2>Recent Trades</h2>
+                <div id="trades-container" class="table-container"></div>
+            </section>
+        </main>
+
+        <footer>
+            <p>© 2025 Trading Dashboard | Data is simulated for demonstration purposes</p>
+        </footer>
+    </div>
+
+    <script src="js/dashboard.js"></script>
+</body>
+</html>
