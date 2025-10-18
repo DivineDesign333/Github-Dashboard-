@@ -1,0 +1,2 @@
+# Python dependencies for Github Dashboard
+# Add your required packages here
