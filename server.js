@@ -60,6 +60,7 @@ app.get('/api/trades/stats', (req, res) => {
 });
 
 // Serve the dashboard
+// Note: For production deployment, add rate limiting middleware
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
