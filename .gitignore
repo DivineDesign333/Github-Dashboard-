@@ -28,6 +28,10 @@ wheels/
 venv/
 ENV/
 env/
+# Dependencies
+node_modules/
+npm-debug.log
+yarn-error.log
 
 # IDE
 .vscode/
@@ -44,3 +48,26 @@ htmlcov/
 # OS
 .DS_Store
 Thumbs.db
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+/tmp/
+
+# Build outputs
+dist/
+build/
+*.min.js
+*.min.css
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Logs
+logs/
+*.log

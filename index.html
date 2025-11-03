@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modular Trading Dashboard</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/dashboard.css">
+    <link rel="stylesheet" href="styles/charts.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Trading Dashboard</h1>
+            <div class="header-controls">
+                <button id="refresh-btn" class="btn btn-primary">Refresh Data</button>
+                <select id="timeframe-select" class="select">
+                    <option value="1m">1 Minute</option>
+                    <option value="5m">5 Minutes</option>
+                    <option value="15m">15 Minutes</option>
+                    <option value="1h" selected>1 Hour</option>
+                    <option value="1d">1 Day</option>
+                </select>
+            </div>
+        </header>
+
+        <div class="dashboard-grid">
+            <!-- Market Overview Section -->
+            <section class="card market-overview">
+                <h2 class="card-title">Market Overview</h2>
+                <div id="market-stats" class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-label">Total Volume</span>
+                        <span class="stat-value" id="total-volume">$0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">24h Change</span>
+                        <span class="stat-value" id="market-change">0%</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Active Trades</span>
+                        <span class="stat-value" id="active-trades">0</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Price Chart Section -->
+            <section class="card chart-section">
+                <h2 class="card-title">Price Chart</h2>
+                <canvas id="price-chart"></canvas>
+            </section>
+
+            <!-- Watchlist Section -->
+            <section class="card watchlist">
+                <h2 class="card-title">Watchlist</h2>
+                <div id="watchlist-items" class="watchlist-grid"></div>
+            </section>
+
+            <!-- Recent Trades Section -->
+            <section class="card recent-trades">
+                <h2 class="card-title">Recent Trades</h2>
+                <div id="trades-list" class="trades-container"></div>
+            </section>
+
+            <!-- Order Book Section -->
+            <section class="card order-book">
+                <h2 class="card-title">Order Book</h2>
+                <div class="order-book-grid">
+                    <div class="asks" id="order-asks"></div>
+                    <div class="bids" id="order-bids"></div>
+                </div>
+            </section>
+
+            <!-- Portfolio Section -->
+            <section class="card portfolio">
+                <h2 class="card-title">Portfolio</h2>
+                <div id="portfolio-items" class="portfolio-grid"></div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Load modules -->
+    <script src="js/utils/helpers.js"></script>
+    <script src="js/utils/formatters.js"></script>
+    <script src="js/modules/dataService.js"></script>
+    <script src="js/modules/chartModule.js"></script>
+    <script src="js/modules/watchlistModule.js"></script>
+    <script src="js/modules/tradesModule.js"></script>
+    <script src="js/modules/orderBookModule.js"></script>
+    <script src="js/modules/portfolioModule.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
