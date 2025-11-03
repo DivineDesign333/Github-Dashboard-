@@ -23,17 +23,26 @@ const TradesModule = {
     render() {
         if (!this.container) return;
 
-        this.container.innerHTML = '';
+        // More efficient DOM clearing
+        while (this.container.firstChild) {
+            this.container.removeChild(this.container.firstChild);
+        }
 
         if (this.data.length === 0) {
-            this.container.innerHTML = '<p style="color: #94a3b8; text-align: center;">No recent trades</p>';
+            const emptyMsg = DashboardHelpers.createElement('p', '', 'No recent trades');
+            emptyMsg.style.color = '#94a3b8';
+            emptyMsg.style.textAlign = 'center';
+            this.container.appendChild(emptyMsg);
             return;
         }
 
+        // Use DocumentFragment for batch DOM insertion
+        const fragment = document.createDocumentFragment();
         this.data.forEach(trade => {
             const tradeElement = this.createTradeItem(trade);
-            this.container.appendChild(tradeElement);
+            fragment.appendChild(tradeElement);
         });
+        this.container.appendChild(fragment);
     },
 
     // Create a trade item element

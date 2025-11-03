@@ -23,17 +23,26 @@ const WatchlistModule = {
     render() {
         if (!this.container) return;
 
-        this.container.innerHTML = '';
+        // More efficient DOM clearing
+        while (this.container.firstChild) {
+            this.container.removeChild(this.container.firstChild);
+        }
 
         if (this.data.length === 0) {
-            this.container.innerHTML = '<p style="color: #94a3b8; text-align: center;">No items in watchlist</p>';
+            const emptyMsg = DashboardHelpers.createElement('p', '', 'No items in watchlist');
+            emptyMsg.style.color = '#94a3b8';
+            emptyMsg.style.textAlign = 'center';
+            this.container.appendChild(emptyMsg);
             return;
         }
 
+        // Use DocumentFragment for batch DOM insertion
+        const fragment = document.createDocumentFragment();
         this.data.forEach(item => {
             const itemElement = this.createWatchlistItem(item);
-            this.container.appendChild(itemElement);
+            fragment.appendChild(itemElement);
         });
+        this.container.appendChild(fragment);
     },
 
     // Create a watchlist item element

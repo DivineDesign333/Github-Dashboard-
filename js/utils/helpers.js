@@ -7,7 +7,7 @@ const DashboardHelpers = {
 
     // Generate random percentage change
     generateRandomChange(min = -5, max = 5) {
-        return (Math.random() * (max - min) + min).toFixed(2);
+        return parseFloat((Math.random() * (max - min) + min).toFixed(2));
     },
 
     // Get timestamp
