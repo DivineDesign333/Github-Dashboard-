@@ -3,6 +3,8 @@ const ChartModule = {
     canvas: null,
     ctx: null,
     chartData: [],
+    gradient: null,
+    animationFrameId: null,
     
     // Initialize the chart module
     init() {
@@ -15,11 +17,13 @@ const ChartModule = {
         this.ctx = this.canvas.getContext('2d');
         this.resizeCanvas();
         
-        // Add resize listener
-        window.addEventListener('resize', () => {
+        // Add debounced resize listener
+        const debouncedResize = DashboardHelpers.debounce(() => {
             this.resizeCanvas();
             this.render();
-        });
+        }, 250);
+        
+        window.addEventListener('resize', debouncedResize);
         
         console.log('ChartModule initialized');
     },
@@ -29,12 +33,19 @@ const ChartModule = {
         const container = this.canvas.parentElement;
         this.canvas.width = container.clientWidth;
         this.canvas.height = container.clientHeight || 350;
+        // Recreate gradient when canvas size changes
+        this.gradient = null;
     },
 
     // Update chart data
     updateData(data) {
         this.chartData = data || [];
-        this.render();
+        // Cancel any pending animation frame
+        if (this.animationFrameId) {
+            cancelAnimationFrame(this.animationFrameId);
+        }
+        // Schedule render using requestAnimationFrame for smoother updates
+        this.animationFrameId = requestAnimationFrame(() => this.render());
     },
 
     // Render the chart
@@ -63,15 +74,20 @@ const ChartModule = {
         this.ctx.strokeStyle = '#334155';
         this.ctx.lineWidth = 1;
         
-        for (let i = 0; i <= 5; i++) {
-            const y = padding + (chartHeight / 5) * i;
+        // Cache common values
+        const gridDivisions = 5;
+        const gridYInterval = chartHeight / gridDivisions;
+        const priceInterval = priceRange / gridDivisions;
+        
+        for (let i = 0; i <= gridDivisions; i++) {
+            const y = padding + gridYInterval * i;
             this.ctx.beginPath();
             this.ctx.moveTo(padding, y);
             this.ctx.lineTo(width - padding, y);
             this.ctx.stroke();
 
             // Draw price labels
-            const price = maxPrice - (priceRange / 5) * i;
+            const price = maxPrice - priceInterval * i;
             this.ctx.fillStyle = '#94a3b8';
             this.ctx.font = '12px sans-serif';
             this.ctx.textAlign = 'right';
@@ -83,8 +99,11 @@ const ChartModule = {
         this.ctx.lineWidth = 2;
         this.ctx.beginPath();
 
+        const dataLength = this.chartData.length;
+        const xInterval = chartWidth / (dataLength - 1);
+        
         this.chartData.forEach((point, index) => {
-            const x = padding + (chartWidth / (this.chartData.length - 1)) * index;
+            const x = padding + xInterval * index;
             const y = padding + chartHeight - ((point.price - minPrice) / priceRange) * chartHeight;
 
             if (index === 0) {
@@ -96,20 +115,23 @@ const ChartModule = {
 
         this.ctx.stroke();
 
-        // Draw area fill
+        // Draw area fill with cached gradient
         this.ctx.lineTo(width - padding, height - padding);
         this.ctx.lineTo(padding, height - padding);
         this.ctx.closePath();
         
-        const gradient = this.ctx.createLinearGradient(0, padding, 0, height - padding);
-        gradient.addColorStop(0, 'rgba(59, 130, 246, 0.3)');
-        gradient.addColorStop(1, 'rgba(59, 130, 246, 0)');
-        this.ctx.fillStyle = gradient;
+        // Create gradient only once per resize
+        if (!this.gradient) {
+            this.gradient = this.ctx.createLinearGradient(0, padding, 0, height - padding);
+            this.gradient.addColorStop(0, 'rgba(59, 130, 246, 0.3)');
+            this.gradient.addColorStop(1, 'rgba(59, 130, 246, 0)');
+        }
+        this.ctx.fillStyle = this.gradient;
         this.ctx.fill();
 
         // Draw current price indicator
-        if (this.chartData.length > 0) {
-            const lastPoint = this.chartData[this.chartData.length - 1];
+        if (dataLength > 0) {
+            const lastPoint = this.chartData[dataLength - 1];
             const lastX = width - padding;
             const lastY = padding + chartHeight - ((lastPoint.price - minPrice) / priceRange) * chartHeight;
 

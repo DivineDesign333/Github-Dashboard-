@@ -16,7 +16,7 @@ const DataService = {
 
         return {
             totalVolume: totalVolume,
-            marketChange: parseFloat(marketChange),
+            marketChange: marketChange,
             activeTrades: activeTrades
         };
     },
@@ -48,7 +48,7 @@ const DataService = {
             return {
                 symbol: symbol + '/USD',
                 price: price,
-                change: parseFloat(change)
+                change: change
             };
         });
     },

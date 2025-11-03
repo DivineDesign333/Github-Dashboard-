@@ -23,17 +23,24 @@ const PortfolioModule = {
     render() {
         if (!this.container) return;
 
-        this.container.innerHTML = '';
+        // Clear all children efficiently
+        this.container.replaceChildren();
 
         if (this.data.length === 0) {
-            this.container.innerHTML = '<p style="color: #94a3b8; text-align: center;">No assets in portfolio</p>';
+            const emptyMsg = DashboardHelpers.createElement('p', '', 'No assets in portfolio');
+            emptyMsg.style.color = '#94a3b8';
+            emptyMsg.style.textAlign = 'center';
+            this.container.appendChild(emptyMsg);
             return;
         }
 
+        // Use DocumentFragment for batch DOM insertion
+        const fragment = document.createDocumentFragment();
         this.data.forEach(item => {
             const itemElement = this.createPortfolioItem(item);
-            this.container.appendChild(itemElement);
+            fragment.appendChild(itemElement);
         });
+        this.container.appendChild(fragment);
     },
 
     // Create portfolio item element

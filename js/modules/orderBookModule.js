@@ -32,32 +32,58 @@ const OrderBookModule = {
 
     // Render asks (sell orders)
     renderAsks() {
-        this.asksContainer.innerHTML = '<h3 style="color: #ef4444; margin-bottom: 10px; font-size: 0.9rem;">ASKS</h3>';
+        // Clear all children efficiently
+        this.asksContainer.replaceChildren();
+        
+        const header = DashboardHelpers.createElement('h3', '', 'ASKS');
+        header.style.color = '#ef4444';
+        header.style.marginBottom = '10px';
+        header.style.fontSize = '0.9rem';
+        this.asksContainer.appendChild(header);
 
         if (this.data.asks.length === 0) {
-            this.asksContainer.innerHTML += '<p style="color: #94a3b8; font-size: 0.85rem;">No asks</p>';
+            const emptyMsg = DashboardHelpers.createElement('p', '', 'No asks');
+            emptyMsg.style.color = '#94a3b8';
+            emptyMsg.style.fontSize = '0.85rem';
+            this.asksContainer.appendChild(emptyMsg);
             return;
         }
 
+        // Use DocumentFragment for batch DOM insertion
+        const fragment = document.createDocumentFragment();
         this.data.asks.forEach(order => {
             const orderElement = this.createOrderItem(order);
-            this.asksContainer.appendChild(orderElement);
+            fragment.appendChild(orderElement);
         });
+        this.asksContainer.appendChild(fragment);
     },
 
     // Render bids (buy orders)
     renderBids() {
-        this.bidsContainer.innerHTML = '<h3 style="color: #10b981; margin-bottom: 10px; font-size: 0.9rem;">BIDS</h3>';
+        // Clear all children efficiently
+        this.bidsContainer.replaceChildren();
+        
+        const header = DashboardHelpers.createElement('h3', '', 'BIDS');
+        header.style.color = '#10b981';
+        header.style.marginBottom = '10px';
+        header.style.fontSize = '0.9rem';
+        this.bidsContainer.appendChild(header);
 
         if (this.data.bids.length === 0) {
-            this.bidsContainer.innerHTML += '<p style="color: #94a3b8; font-size: 0.85rem;">No bids</p>';
+            const emptyMsg = DashboardHelpers.createElement('p', '', 'No bids');
+            emptyMsg.style.color = '#94a3b8';
+            emptyMsg.style.fontSize = '0.85rem';
+            this.bidsContainer.appendChild(emptyMsg);
             return;
         }
 
+        // Use DocumentFragment for batch DOM insertion
+        const fragment = document.createDocumentFragment();
         this.data.bids.forEach(order => {
             const orderElement = this.createOrderItem(order);
-            this.bidsContainer.appendChild(orderElement);
+            fragment.appendChild(orderElement);
         });
+        this.bidsContainer.appendChild(fragment);
     },
 
     // Create order item element
