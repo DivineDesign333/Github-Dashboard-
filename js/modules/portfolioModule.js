@@ -23,10 +23,8 @@ const PortfolioModule = {
     render() {
         if (!this.container) return;
 
-        // More efficient DOM clearing
-        while (this.container.firstChild) {
-            this.container.removeChild(this.container.firstChild);
-        }
+        // Clear all children efficiently
+        this.container.replaceChildren();
 
         if (this.data.length === 0) {
             const emptyMsg = DashboardHelpers.createElement('p', '', 'No assets in portfolio');

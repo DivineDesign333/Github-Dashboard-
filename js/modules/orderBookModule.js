@@ -32,10 +32,8 @@ const OrderBookModule = {
 
     // Render asks (sell orders)
     renderAsks() {
-        // More efficient DOM clearing
-        while (this.asksContainer.firstChild) {
-            this.asksContainer.removeChild(this.asksContainer.firstChild);
-        }
+        // Clear all children efficiently
+        this.asksContainer.replaceChildren();
         
         const header = DashboardHelpers.createElement('h3', '', 'ASKS');
         header.style.color = '#ef4444';
@@ -62,10 +60,8 @@ const OrderBookModule = {
 
     // Render bids (buy orders)
     renderBids() {
-        // More efficient DOM clearing
-        while (this.bidsContainer.firstChild) {
-            this.bidsContainer.removeChild(this.bidsContainer.firstChild);
-        }
+        // Clear all children efficiently
+        this.bidsContainer.replaceChildren();
         
         const header = DashboardHelpers.createElement('h3', '', 'BIDS');
         header.style.color = '#10b981';
