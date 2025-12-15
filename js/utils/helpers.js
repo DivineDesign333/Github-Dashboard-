@@ -7,7 +7,7 @@ const DashboardHelpers = {
 
     // Generate random percentage change
     generateRandomChange(min = -5, max = 5) {
-        return (Math.random() * (max - min) + min).toFixed(2);
+        return +(Math.random() * (max - min) + min).toFixed(2);
     },
 
     // Get timestamp
@@ -64,7 +64,7 @@ const DashboardHelpers = {
 
     // Generate unique ID
     generateId() {
-        return '_' + Math.random().toString(36).substr(2, 9);
+        return '_' + Math.random().toString(36).substring(2, 11);
     }
 };
 

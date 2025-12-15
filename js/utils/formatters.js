@@ -62,7 +62,7 @@ const DashboardFormatters = {
     // Truncate text
     truncateText(text, maxLength) {
         if (text.length <= maxLength) return text;
-        return text.substr(0, maxLength) + '...';
+        return text.substring(0, maxLength) + '...';
     }
 };
 
