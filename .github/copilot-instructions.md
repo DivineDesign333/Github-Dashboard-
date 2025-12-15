@@ -240,7 +240,10 @@ Use `DashboardFormatters` utilities:
 - `formatCurrency(value)`: Format as currency ($1,234.56)
 - `formatNumber(value)`: Format with thousand separators
 - `formatPercentage(value)`: Format as percentage (12.34%)
-- `formatDate(timestamp)`: Format timestamps
+- `formatDateTime(timestamp)`: Format timestamps with date and time
+- `formatTime(timestamp)`: Format timestamps with time only
+- `formatCompactNumber(value)`: Format large numbers with K, M, B suffixes
+- `truncateText(text, maxLength)`: Truncate text with ellipsis
 
 ### Working with Charts
 The `ChartModule` uses HTML5 Canvas:
