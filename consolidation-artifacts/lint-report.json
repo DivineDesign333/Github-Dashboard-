@@ -1,0 +1,31 @@
+{
+  "python_pyflakes": {
+    "files_scanned": 0,
+    "note": "No Python files found"
+  },
+  "javascript": {
+    "files_scanned": 10,
+    "files": [
+      "config.js",
+      "js/app.js",
+      "js/modules/chartModule.js",
+      "js/modules/dataService.js",
+      "js/modules/orderBookModule.js",
+      "js/modules/portfolioModule.js",
+      "js/modules/tradesModule.js",
+      "js/modules/watchlistModule.js",
+      "js/utils/formatters.js",
+      "js/utils/helpers.js"
+    ],
+    "note": "No JS linter configured; manual review recommended"
+  },
+  "css": {
+    "files_scanned": 3,
+    "files": [
+      "styles/charts.css",
+      "styles/dashboard.css",
+      "styles/main.css"
+    ],
+    "note": "No CSS linter configured; manual review recommended"
+  }
+}

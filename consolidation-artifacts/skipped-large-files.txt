@@ -1,0 +1,3 @@
+Large file threshold: 1,000,000 bytes (1 MB)
+
+No files exceeded the large file threshold.

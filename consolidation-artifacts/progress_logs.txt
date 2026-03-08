@@ -1,0 +1,15 @@
+[2026-03-08T20:50:12.578203Z] START consolidation scan
+[2026-03-08T20:50:12.580219Z] Scanning repository files...
+[2026-03-08T20:50:12.585146Z] Found 22 files to scan
+[2026-03-08T20:50:12.593484Z] Scanned 22 files, found 0 large files, 0 potential secret patterns
+[2026-03-08T20:50:12.593516Z] Found 0 duplicate clusters
+[2026-03-08T20:50:12.593736Z] Written /home/runner/work/Github-Dashboard-/Github-Dashboard-/consolidation-artifacts/inventory.csv
+[2026-03-08T20:50:12.593890Z] Written inventory_summary.json
+[2026-03-08T20:50:12.594004Z] Written skipped-large-files.txt
+[2026-03-08T20:50:12.594119Z] Written redacted_secrets_report.json (0 findings)
+[2026-03-08T20:50:12.598173Z] Written lint-report.json
+[2026-03-08T20:50:12.598310Z] Written license-report.json
+[2026-03-08T20:50:12.598423Z] Written duplicates.json (0 clusters)
+[2026-03-08T20:50:12.598567Z] Written file-types.csv
+[2026-03-08T20:50:12.598781Z] Written docs/consolidation_recommendations.md
+[2026-03-08T20:50:12.598803Z] COMPLETE: all artifacts generated
