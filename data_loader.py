@@ -1,5 +1,4 @@
 import yfinance as yf
-
 def load_data(ticker: str, start: str, end: str):
     """
     Load historical price data for a given ticker symbol and date range.
