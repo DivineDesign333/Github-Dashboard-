@@ -1,0 +1,13 @@
+{
+  "project_license": "MIT",
+  "license_file": "LICENSE",
+  "spdx_id": "MIT",
+  "copyright": "Copyright (c) 2024 DivineDesign333",
+  "third_party_licenses": [],
+  "conflicts": [],
+  "files_by_license": {
+    "UNKNOWN": 21,
+    "MIT": 1
+  },
+  "notes": "All source files lack explicit SPDX headers. Project LICENSE is MIT."
+}

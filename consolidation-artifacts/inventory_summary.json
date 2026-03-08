@@ -1,0 +1,15 @@
+{
+  "total_files": 22,
+  "total_bytes": 59839,
+  "counts_by_file_type": {
+    "doc": 6,
+    "config": 2,
+    "code": 14
+  },
+  "counts_by_license": {
+    "UNKNOWN": 21,
+    "MIT": 1
+  },
+  "duplicates_count": 0,
+  "large_files_count": 0
+}
