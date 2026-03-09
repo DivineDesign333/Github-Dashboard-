@@ -6,15 +6,16 @@ set -euo pipefail
 CANONICAL="governance/final-output-block.md"
 ERROR=0
 
-# Find any final-output-block*.md files that are NOT in governance/
+# Find any final-output-block*.md files (case-insensitive) that are NOT in governance/
 while IFS= read -r -d '' file; do
-    # Normalize path (strip leading ./)
+    # Normalize path (strip leading ./) then convert to lowercase for comparison
     normalised="${file#./}"
-    if [[ "$normalised" != "governance/final-output-block"*.md ]]; then
+    lower=$(printf '%s' "$normalised" | tr '[:upper:]' '[:lower:]')
+    if [[ "$lower" != "governance/final-output-block"*.md ]]; then
         echo "ERROR: Duplicate Final Output Block standard found outside governance/: $normalised"
         ERROR=1
     fi
-done < <(find . -name "final-output-block*.md" -not -path "./.git/*" -print0)
+done < <(find . -iname "final-output-block*.md" -not -path "./.git/*" -print0)
 
 if [[ $ERROR -ne 0 ]]; then
     echo ""
