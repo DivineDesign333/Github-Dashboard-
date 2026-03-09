@@ -1,5 +1,20 @@
 # Github-Dashboard-
 
+`Governance: Active (4 invariants enforced)`
+
+## Governance
+
+This repository is governed by a set of invariants enforced on every push and pull request. For a full lattice map of invariants, rules, and failure modes see [governance/INDEX.md](governance/INDEX.md).
+
+### Standards enforced by CI
+
+| Guardrail script | Workflow | What it checks |
+|---|---|---|
+| [`scripts/check-coding-conventions.sh`](scripts/check-coding-conventions.sh) | [`governance-phase9.yml`](.github/workflows/governance-phase9.yml) | Single canonical formatter config (`.prettierrc` at root) |
+| [`scripts/check-repo-layout.sh`](scripts/check-repo-layout.sh) | [`governance-phase9.yml`](.github/workflows/governance-phase9.yml) | Approved root-level directories and files |
+| [`scripts/check-security-baseline.sh`](scripts/check-security-baseline.sh) | [`governance-phase9.yml`](.github/workflows/governance-phase9.yml) | `governance/SECURITY.md` canonical; README links to it |
+| [`scripts/check-final-output-block.sh`](scripts/check-final-output-block.sh) | [`governance-guardrails.yml`](.github/workflows/governance-guardrails.yml) | Final Output Block standard lives only in `governance/` |
+
 ## Installation
 
 Clone the repository:
