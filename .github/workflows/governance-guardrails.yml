@@ -1,0 +1,19 @@
+name: Governance Guardrails
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+    branches: ["**"]
+
+jobs:
+  check-final-output-block:
+    name: Final Output Block – duplication check
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check for duplicate Final Output Block standard
+        run: bash scripts/check-final-output-block.sh

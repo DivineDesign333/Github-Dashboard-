@@ -42,6 +42,14 @@ If you find a bug or have a feature request, please open an issue on GitHub with
 - Expected vs actual behavior
 - Screenshots if applicable
 
+## Governance Standards
+
+Certain standards in this repository are maintained under the `governance/` directory as the **single source of truth**. The rules below apply to all files in that directory:
+
+- **No duplication.** Do not copy or paraphrase a governance standard into another file (e.g., `docs/`, `README.md`, or elsewhere). Reference it by linking directly to the canonical file (e.g., `[Final Output Block standard](governance/final-output-block.md)`).
+- **Final Output Block standard.** The authoritative definition lives in `governance/final-output-block.md`. Any change to that standard — including wording, required fields, or examples — must be made **only** in that file via a pull request.
+- A CI check (`scripts/check-final-output-block.sh`) enforces that no `final-output-block*.md` file exists outside `governance/`. The pipeline will fail if a duplicate is introduced.
+
 ## Questions
 
 For questions or feedback, please open an issue on GitHub.
