@@ -17,20 +17,3 @@ jobs:
 
       - name: Check for duplicate Final Output Block standard
         run: bash scripts/check-final-output-block.sh
-
-  merge-pr-31:
-    name: Mark PR 31 ready and merge into main
-    if: github.event_name == 'push' && github.ref == 'refs/heads/copilot/mark-pr-31-ready-for-review-again'
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      pull-requests: write
-    steps:
-      - name: Mark PR #31 ready for review and merge
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          gh pr ready 31 --repo DivineDesign333/Github-Dashboard- || true
-          gh pr merge 31 --repo DivineDesign333/Github-Dashboard- --merge --admin
-          MERGE_SHA=$(gh pr view 31 --repo DivineDesign333/Github-Dashboard- --json mergeCommit --jq '.mergeCommit.oid')
-          echo "PR #31 merge commit SHA: $MERGE_SHA"
