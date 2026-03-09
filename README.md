@@ -168,6 +168,10 @@ Currently, the dashboard uses mock data for demonstration. To integrate real API
 
 This project is open source and available under the MIT License.
 
+## Security
+
+Please review our security policy before reporting vulnerabilities: [governance/SECURITY.md](governance/SECURITY.md).
+
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.

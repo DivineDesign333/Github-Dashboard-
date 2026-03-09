@@ -1,0 +1,25 @@
+name: Governance Phase 9
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+    branches: ["**"]
+
+jobs:
+  governance-phase9:
+    name: Phase 9 – coding, layout, and security invariants
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check coding conventions invariant
+        run: bash scripts/check-coding-conventions.sh
+
+      - name: Check repository layout invariant
+        run: bash scripts/check-repo-layout.sh
+
+      - name: Check security baseline invariant
+        run: bash scripts/check-security-baseline.sh
