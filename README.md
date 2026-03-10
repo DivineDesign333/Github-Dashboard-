@@ -1,10 +1,12 @@
 # Github-Dashboard-
 
-`Governance: Active (4 invariants enforced)`
+[![Governance: Active — 4 invariants enforced](https://img.shields.io/badge/governance-active%20%E2%80%94%204%20invariants%20enforced-brightgreen)](governance/INDEX.md)
 
 ## Governance
 
 This repository is governed by a set of invariants enforced on every push and pull request. For a full lattice map of invariants, rules, and failure modes see [governance/INDEX.md](governance/INDEX.md).
+
+> **Phase 10 alignment:** contributor entry surfaces are being progressively exposed — see [governance/PHASE10-PACKET.md](governance/PHASE10-PACKET.md) for scope and mission.
 
 ### Standards enforced by CI
 
