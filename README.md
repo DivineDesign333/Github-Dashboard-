@@ -8,6 +8,11 @@ This repository is governed by a set of invariants enforced on every push and pu
 
 > **Phase 10 alignment:** contributor entry surfaces are being progressively exposed — see [governance/PHASE10-PACKET.md](governance/PHASE10-PACKET.md) for scope and mission.
 
+### Governance observability (Phase 10)
+- Governance badge → [governance/INDEX.md](governance/INDEX.md) (single source of truth).
+- Docs-only changes: expect guardrail checks to run; they should stay green when no scripts, workflows, or enforcement logic are touched.
+- If your PR touches scripts, workflows, or enforcement logic, stop and read [governance/PHASE10-PACKET.md](governance/PHASE10-PACKET.md) before continuing.
+
 ### Standards enforced by CI
 
 | Guardrail script | Workflow | What it checks |
