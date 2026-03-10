@@ -11,5 +11,5 @@
 
 ## Governance (Phase 10)
 
-<!-- Phase 10 alignment hint: governance is enforced by CI — see governance/INDEX.md for the full invariant map.
-     For docs-only changes, confirm: no guardrail scripts, workflows, or enforcement logic were modified. -->
+<!-- Phase 10 observability: see governance/INDEX.md#observability.
+     For docs-only changes, confirm you did not modify guardrail scripts, workflows, or enforcement logic. -->

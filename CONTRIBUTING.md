@@ -54,6 +54,8 @@ The full invariant map — covering coding conventions, repo layout, security ba
 
 > **Phase 10 alignment:** this repository is in Phase 10 (deliberate execution). All contributor-facing governance surfaces point to [governance/INDEX.md](governance/INDEX.md) as the single source of truth. No enforcement logic changes are made during this phase — see [governance/PHASE10-PACKET.md](governance/PHASE10-PACKET.md) for full scope.
 
+See "Observability & CI signals" in [governance/INDEX.md#observability](governance/INDEX.md#observability) for how CI evaluates your PR.
+
 ## Questions
 
 For questions or feedback, please open an issue on GitHub.
