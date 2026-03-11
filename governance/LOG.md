@@ -18,7 +18,7 @@ Added an observability layer on top of the Phase 9 enforcement lattice. Governan
 
 ### Scope of Changes
 
-- `README.md` — added CI status badge and governance section (links to `governance/INDEX.md`, `.github/workflows/governance-phase9.yml`, and guardrail scripts).
+- `README.md` — added governance badge/status indicator and governance section (links to `governance/INDEX.md`, `.github/workflows/governance-phase9.yml`, and guardrail scripts).
 - `governance/INDEX.md` — new file; authoritative lattice map listing all four invariants with rule, enforcement signal, and failure mode.
 - Docs-only diff; no guardrail scripts or workflow files were modified.
 
