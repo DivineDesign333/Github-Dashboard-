@@ -50,6 +50,12 @@ Certain standards in this repository are maintained under the `governance/` dire
 - **Final Output Block standard.** The authoritative definition lives in `governance/final-output-block.md`. Any change to that standard — including wording, required fields, or examples — must be made **only** in that file via a pull request.
 - A CI check (`scripts/check-final-output-block.sh`) enforces that no `final-output-block*.md` file exists outside `governance/`. The pipeline will fail if a duplicate is introduced.
 
+The full invariant map — covering coding conventions, repo layout, security baseline, and the Final Output Block standard — is at [governance/INDEX.md](governance/INDEX.md).
+
+> **Phase 10 alignment:** this repository is in Phase 10 (deliberate execution). All contributor-facing governance surfaces point to [governance/INDEX.md](governance/INDEX.md) as the single source of truth. No enforcement logic changes are made during this phase — see [governance/PHASE10-PACKET.md](governance/PHASE10-PACKET.md) for full scope.
+
+See "Observability & CI signals" in [governance/INDEX.md#observability](governance/INDEX.md#observability) for how CI evaluates your PR.
+
 ## Questions
 
 For questions or feedback, please open an issue on GitHub.
