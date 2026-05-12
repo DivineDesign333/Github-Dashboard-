@@ -1,5 +1,27 @@
 # Github-Dashboard-
 
+[![Governance: Active — 4 invariants enforced](https://img.shields.io/badge/governance-active%20%E2%80%94%204%20invariants%20enforced-brightgreen)](governance/INDEX.md)
+
+## Governance
+
+This repository is governed by a set of invariants enforced on every push and pull request. For a full lattice map of invariants, rules, and failure modes see [governance/INDEX.md](governance/INDEX.md).
+
+> **Phase 10 alignment:** contributor entry surfaces are being progressively exposed — see [governance/PHASE10-PACKET.md](governance/PHASE10-PACKET.md) for scope and mission.
+
+### Governance observability (Phase 10)
+- Governance badge → [governance/INDEX.md](governance/INDEX.md) (single source of truth).
+- Docs-only changes: expect guardrail checks to run; they should stay green when no scripts, workflows, or enforcement logic are touched.
+- If your PR touches scripts, workflows, or enforcement logic, stop and read [governance/PHASE10-PACKET.md](governance/PHASE10-PACKET.md) before continuing.
+
+### Standards enforced by CI
+
+| Guardrail script | Workflow | What it checks |
+|---|---|---|
+| [`scripts/check-coding-conventions.sh`](scripts/check-coding-conventions.sh) | [`governance-phase9.yml`](.github/workflows/governance-phase9.yml) | Single canonical formatter config (`.prettierrc` at root) |
+| [`scripts/check-repo-layout.sh`](scripts/check-repo-layout.sh) | [`governance-phase9.yml`](.github/workflows/governance-phase9.yml) | Approved root-level directories and files |
+| [`scripts/check-security-baseline.sh`](scripts/check-security-baseline.sh) | [`governance-phase9.yml`](.github/workflows/governance-phase9.yml) | `governance/SECURITY.md` canonical; README links to it |
+| [`scripts/check-final-output-block.sh`](scripts/check-final-output-block.sh) | [`governance-guardrails.yml`](.github/workflows/governance-guardrails.yml) | Final Output Block standard lives only in `governance/` |
+
 ## Installation
 
 Clone the repository:
